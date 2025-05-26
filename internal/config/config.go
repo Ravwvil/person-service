@@ -32,3 +32,10 @@ func LoadConfig() *Config {
 		DBName: os.Getenv("DB_NAME"),
 	}
 }
+
+func (c *Config) PostgresDSN() string {
+	return fmt.Sprintf(
+		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+		c.DBHost, c.DBPort, c.DBUser, c.DBPass, c.DBName,
+	)
+}
